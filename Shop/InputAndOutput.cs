@@ -11,6 +11,9 @@ namespace Shop
             Console.Write(message);
 
             return Console.ReadLine();
+
+
+
         }
     }
 }

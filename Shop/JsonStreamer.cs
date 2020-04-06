@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Shop
 {
@@ -11,19 +12,19 @@ namespace Shop
     {
         public static void Write(List<Product> products)
         {
-            using (FileStream fstream = new FileStream("products.json", FileMode.Truncate))
+            using (FileStream fstream = new FileStream("products.json", FileMode.Create))
             {
-                JsonSerializer.SerializeAsync(fstream, products);
+                JsonSerializer.SerializeAsync(fstream, products.ToArray());
             }
         }
 
         public static void Read()
         {
-            using (FileStream fstream = new FileStream("products.json", FileMode.Open))
+            using (FileStream fstream = new FileStream("products.json", FileMode.OpenOrCreate))
             {
                 try
                 {
-                    RequestHandler.products = JsonSerializer.DeserializeAsync<List<Product>>(fstream).Result;
+                    RequestHandler.products = JsonSerializer.DeserializeAsync<Product[]>(fstream).Result.ToList();
                 }
                 catch
                 {
