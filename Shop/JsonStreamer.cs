@@ -14,7 +14,7 @@ namespace Shop
         {
             using (FileStream fstream = new FileStream("products.json", FileMode.Create))
             {
-                JsonSerializer.SerializeAsync(fstream, products.ToArray());
+                JsonSerializer.SerializeAsync(fstream, products);
             }
         }
 
@@ -24,9 +24,9 @@ namespace Shop
             {
                 try
                 {
-                    RequestHandler.products = JsonSerializer.DeserializeAsync<Product[]>(fstream).Result.ToList();
+                    RequestHandler.products = JsonSerializer.DeserializeAsync<List<Product>>(fstream).Result;
                 }
-                catch
+                catch(Exception ex)
                 {
                     Console.Write("\a");
                 }
