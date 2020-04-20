@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Shop
+namespace ShopForms
 {
     class Product
-    {
+    {        
         public Product()
         {
             Id = new Random().Next(int.MinValue, int.MaxValue);
         }
+
+        public static List<Product> products = new List<Product>();
 
         public int Id { get; set; }
 

@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace Shop
+namespace ShopForms
 {
     class JsonStreamer
     {
@@ -24,9 +24,9 @@ namespace Shop
             {
                 try
                 {
-                    RequestHandler.products = JsonSerializer.DeserializeAsync<List<Product>>(fstream).Result;
+                    Product.products = JsonSerializer.DeserializeAsync<List<Product>>(fstream).Result;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.Write("\a");
                 }
@@ -34,3 +34,4 @@ namespace Shop
         }
     }
 }
+
